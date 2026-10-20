@@ -1,0 +1,330 @@
+/* Hero */
+.home-hero {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+
+.home-hero__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 56px;
+  padding-block: 72px 96px;
+}
+
+.home-hero__copy {
+  flex: 1 1 460px;
+  min-width: 0;
+}
+
+.home-hero__eyebrow {
+  margin-bottom: 20px;
+  color: var(--lcd-light);
+}
+
+.home-hero__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(40px, 5.4vw, 68px);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: var(--white);
+}
+
+.home-hero__lead {
+  margin-top: 24px;
+  max-width: 540px;
+  font-size: 20px;
+  color: var(--on-ink-muted);
+}
+
+.home-hero__actions {
+  margin-top: 36px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Split-screen TV illustration */
+.split-tv {
+  flex: 1 1 440px;
+  min-width: 0;
+}
+
+.split-tv__bezel {
+  padding: 10px;
+  border-radius: 16px;
+  background: var(--ink-border);
+}
+
+.split-tv__screen {
+  aspect-ratio: 16 / 9;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.split-tv__half {
+  position: relative;
+  background: #141923;
+}
+
+.split-tv__half--oled {
+  background: #000000;
+  border-left: 1px solid var(--ink-border);
+}
+
+.split-tv__moon {
+  position: absolute;
+  left: calc(50% - 26px);
+  top: calc(40% - 26px);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #fff8e8;
+}
+
+.split-tv__moon--bloom {
+  box-shadow: 0 0 48px 30px rgba(220, 230, 255, 0.16);
+}
+
+.split-tv__label {
+  position: absolute;
+  left: 14px;
+  bottom: 12px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+
+.split-tv__label--lcd { background: var(--lcd); color: var(--white); }
+.split-tv__label--oled { background: var(--oled); color: var(--ink); }
+
+.split-tv__stand {
+  width: 28%;
+  height: 14px;
+  margin: 0 auto;
+  border-radius: 0 0 8px 8px;
+  background: var(--ink-border);
+}
+
+.split-tv figcaption {
+  margin-top: 16px;
+  font-size: 15px;
+  color: var(--line-strong);
+}
+
+/* Families */
+.home-section {
+  padding-top: 112px;
+}
+
+.home-section--first {
+  padding-top: 96px;
+}
+
+.home-section__lead {
+  margin-top: 16px;
+  max-width: 680px;
+  color: var(--muted);
+}
+
+.family-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.family-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.family-card__name {
+  font-family: var(--font-display);
+  font-size: 40px;
+  letter-spacing: -0.02em;
+}
+
+.family-card__pill {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.family-card__summary {
+  font-size: 22px;
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+.family-card__names-label {
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.family-card__names {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.family-card__names li {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.family-card .arrow-link {
+  margin-top: auto;
+}
+
+.family-card--lcd .family-card__name { color: var(--lcd-text); }
+.family-card--lcd .family-card__pill { background: var(--lcd-tint); color: var(--lcd-deep); }
+.family-card--lcd .family-card__names li { background: #f0f3fa; }
+
+.family-card--oled .family-card__name { color: var(--oled-text); }
+.family-card--oled .family-card__pill { background: var(--oled-tint); color: var(--oled-deep); }
+.family-card--oled .family-card__names li { background: #fbf4ea; }
+
+.also-worth {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 16px 40px;
+  padding: 24px 32px;
+  border-radius: 16px;
+  border: 1px dashed #b9c0ca;
+}
+
+.also-worth .eyebrow {
+  margin: 0;
+}
+
+.also-worth__text {
+  flex: 1 1 520px;
+  color: var(--text-strong);
+}
+
+/* Where to start */
+.start-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.start-card p:last-child {
+  color: var(--on-ink-muted);
+}
+
+/* Guide map */
+.guide-map {
+  list-style: none;
+  margin: 40px 0 0;
+  padding: 0;
+}
+
+.guide-map a {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+  padding: 28px;
+  border-radius: 14px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  color: var(--text);
+  text-decoration: none;
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.guide-map a:hover {
+  border-color: var(--lcd);
+  color: var(--text);
+  transform: translateY(-2px);
+}
+
+.guide-map__num {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--lcd-text);
+}
+
+.guide-map__title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.guide-map__desc {
+  color: var(--muted);
+  font-size: 17px;
+}
+
+.guide-map a.guide-map__item--highlight {
+  background: var(--oled-tint);
+  border-color: var(--oled-border);
+}
+
+.guide-map a.guide-map__item--highlight:hover {
+  border-color: var(--oled);
+}
+
+.guide-map__item--highlight .guide-map__num { color: var(--oled-deep); }
+.guide-map__item--highlight .guide-map__desc { color: var(--oled-body); }
+
+/* Closing tip */
+.home-tip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 48px;
+  border-radius: 20px;
+  background: var(--lcd-tint);
+}
+
+.home-tip__copy {
+  flex: 1 1 520px;
+  min-width: 0;
+}
+
+.home-tip__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--lcd-ink);
+}
+
+.home-tip__copy p {
+  margin-top: 14px;
+  color: var(--lcd-body);
+}
+
+@media (max-width: 600px) {
+  .home-tip {
+    padding: 32px 24px;
+  }
+
+  .home-tip__title {
+    font-size: 28px;
+  }
+}

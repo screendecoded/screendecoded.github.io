@@ -1,0 +1,119 @@
+/* Contrast comparison cards */
+.contrast-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0;
+}
+
+.contrast-card__screen {
+  position: relative;
+  aspect-ratio: 16 / 7;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 14%;
+}
+
+/* A "black" LCD screen still glows dark grey; OLED black is no light at all. */
+.contrast-card__screen--lcd { background: #1c2027; }
+.contrast-card__screen--oled { background: #000000; }
+
+.contrast-card__subtitle {
+  width: 46%;
+  height: 10px;
+  border-radius: 2px;
+  background: var(--white);
+}
+
+.contrast-card__screen--lcd .contrast-card__subtitle {
+  box-shadow: 0 0 22px 12px rgba(220, 230, 255, 0.14);
+}
+
+.contrast-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 24px 28px 28px;
+}
+
+.contrast-card__kind {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.contrast-card__kind--lcd { color: var(--lcd-text); }
+.contrast-card__kind--oled { color: var(--oled-text); }
+
+.contrast-card__ratio {
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* Editorial piece */
+.contrast-toggle {
+  margin-top: 24px;
+}
+
+.contrast-toggle__icon {
+  transition: transform 0.2s;
+}
+
+.contrast-toggle__icon--open {
+  transform: rotate(180deg);
+}
+
+.editorial {
+  margin-top: 24px;
+  padding: 40px 48px;
+  border-radius: 18px;
+  background: var(--ink);
+  color: var(--on-ink-soft);
+}
+
+.editorial__label {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--oled);
+}
+
+.editorial__title {
+  margin-top: 10px;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.4vw, 36px);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--white);
+}
+
+.editorial__body {
+  margin-top: 20px;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.editorial__closing {
+  margin-top: 8px;
+  padding-top: 20px;
+  border-top: 1px solid var(--ink-border);
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--white);
+}
+
+@media (max-width: 600px) {
+  .editorial {
+    padding: 28px 22px;
+  }
+}

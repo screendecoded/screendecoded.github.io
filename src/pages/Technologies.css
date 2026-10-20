@@ -1,0 +1,331 @@
+/* Timeline */
+.tech-list {
+  list-style: none;
+  margin: 32px 0 0;
+  padding: 0;
+}
+
+.tech-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px;
+  border-radius: 14px;
+  background: var(--stone);
+}
+
+.tech-item__status {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--subtle);
+}
+
+.tech-item__name {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.tech-item__full {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-strong);
+}
+
+.tech-item__desc {
+  font-size: 16px;
+  color: var(--muted);
+}
+
+.tech-item--lcd { background: var(--lcd-tint); }
+.tech-item--lcd .tech-item__status,
+.tech-item--lcd .tech-item__name { color: var(--lcd-deep); }
+.tech-item--lcd .tech-item__full { color: var(--lcd-strong); }
+.tech-item--lcd .tech-item__desc { color: var(--lcd-body); }
+
+.tech-item--oled { background: var(--oled-tint); }
+.tech-item--oled .tech-item__status,
+.tech-item--oled .tech-item__name { color: var(--oled-deep); }
+.tech-item--oled .tech-item__full,
+.tech-item--oled .tech-item__desc { color: var(--oled-strong); }
+
+.tech-item--emissive { background: var(--white); border: 1px solid var(--line); }
+.tech-item--emissive .tech-item__status,
+.tech-item--emissive .tech-item__name { color: var(--emissive); }
+
+/* How LCD works */
+.layers {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 56px;
+}
+
+.layers__copy {
+  flex: 1 1 420px;
+  min-width: 0;
+}
+
+.layer-steps {
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.layer-steps li {
+  display: flex;
+  gap: 16px;
+}
+
+.layer-steps__num {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--lcd);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.layers .callout {
+  margin-top: 28px;
+  padding: 16px 20px;
+}
+
+.exploded {
+  flex: 1 1 440px;
+  min-width: 0;
+}
+
+.exploded__stage {
+  position: relative;
+  height: 380px;
+}
+
+.exploded__layer {
+  position: absolute;
+  width: 62%;
+  height: 190px;
+  border-radius: 10px;
+  transform: skewY(-12deg);
+}
+
+.exploded__layer--backlight {
+  left: 0;
+  top: 150px;
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 10px;
+  padding: 18px;
+  background: #1a2340;
+  border: 2px solid var(--lcd);
+}
+
+.exploded__led {
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: #cfe0ff;
+  box-shadow: 0 0 10px 3px rgba(150, 185, 255, 0.55);
+}
+
+.exploded__layer--panel {
+  left: 13%;
+  top: 100px;
+  border: 2px solid #7f8b9e;
+  background:
+    repeating-linear-gradient(90deg, rgba(60, 70, 90, 0.18) 0 2px, transparent 2px 14px),
+    rgba(210, 218, 232, 0.72);
+}
+
+.exploded__layer--filter {
+  left: 26%;
+  top: 50px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  overflow: hidden;
+  border: 2px solid var(--subtle);
+  opacity: 0.85;
+}
+
+.exploded__label {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-strong);
+}
+
+/* OLED families */
+.subpixels {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px;
+  border-radius: 12px;
+  background: var(--ink);
+}
+
+.subpixels__row {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 8px;
+}
+
+.subpixels__cell {
+  height: 88px;
+  border-radius: 6px;
+}
+
+.subpixels__labels {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--on-ink-dim);
+  text-align: center;
+}
+
+.oled-card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.oled-card__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.oled-card__name {
+  font-family: var(--font-display);
+  font-size: 32px;
+  letter-spacing: -0.02em;
+}
+
+.oled-card__maker {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--subtle);
+}
+
+.woled-gens {
+  margin-top: 24px;
+  padding: 32px;
+  border-radius: 16px;
+  background: var(--oled-tint);
+  scroll-margin-top: 24px;
+}
+
+.woled-gens h3 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  color: var(--oled-strong);
+}
+
+.woled-gens dl {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+  gap: 20px 32px;
+}
+
+.woled-gens dt {
+  font-weight: 700;
+  color: var(--oled-strong);
+}
+
+.woled-gens dd {
+  margin-top: 4px;
+  color: var(--oled-body);
+}
+
+/* RGB backlight vs MicroLED */
+.versus-card {
+  padding: 32px;
+  border-radius: 16px;
+}
+
+.versus-card__kicker {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+}
+
+.versus-card h3 {
+  margin-top: 10px;
+  font-family: var(--font-display);
+  font-size: 28px;
+}
+
+.versus-card__text {
+  margin-top: 14px;
+}
+
+.versus-card--lcd { background: var(--lcd-tint); }
+.versus-card--lcd .versus-card__kicker { color: var(--lcd-deep); }
+.versus-card--lcd h3 { color: var(--lcd-ink); }
+.versus-card--lcd .versus-card__text { color: var(--lcd-body); }
+
+.versus-card--emissive { background: var(--ink); color: var(--on-ink); }
+.versus-card--emissive .versus-card__kicker { color: var(--emissive-light); }
+.versus-card--emissive h3 { color: var(--white); }
+.versus-card--emissive .versus-card__text { color: var(--on-ink-muted); }
+
+/* Comparison table */
+/* Wider screens keep the full table and scroll it if needed; narrow screens
+   switch to cards below, so they must not inherit this minimum width. */
+@media (min-width: 641px) {
+  .compare-table {
+    min-width: 720px;
+  }
+}
+
+.compare-table thead th:nth-child(2) { color: var(--lcd-deep); }
+.compare-table thead th:nth-child(3) { color: var(--oled-deep); }
+.compare-table thead th:nth-child(4) { color: var(--emissive); }
+
+/* Narrow screens: one card per aspect, with LCD / OLED / MicroLED as lines
+   inside it so the three stay directly comparable. */
+@media (max-width: 640px) {
+  .compare-table tbody th {
+    margin-bottom: 4px;
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .compare-table tbody td {
+    display: grid;
+    grid-template-columns: 88px minmax(0, 1fr);
+    gap: 12px;
+    padding: 8px 0;
+    border-top: 1px solid var(--line-soft);
+  }
+
+  .compare-table tbody td:last-child {
+    padding-bottom: 0;
+  }
+
+  .compare-table .compare-table__tech {
+    display: block;
+    font-weight: 700;
+  }
+
+  .compare-table__tech--lcd { color: var(--lcd-deep); }
+  .compare-table__tech--oled { color: var(--oled-deep); }
+  .compare-table__tech--micro { color: var(--emissive); }
+}
+
+#oled {
+  scroll-margin-top: 24px;
+}

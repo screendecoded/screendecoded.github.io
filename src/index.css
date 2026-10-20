@@ -1,0 +1,467 @@
+/* Design tokens — from the "Brand sheet" artboard of the Screen Decoded design. */
+:root {
+  /* Core */
+  --ink: #0e1014;
+  --ink-raised: #1a1d23;
+  --ink-hover: #262b33;
+  --ink-line: #22262d;
+  --ink-border: #2a2f38;
+  --paper: #f4f5f7;
+  --white: #ffffff;
+  --text: #111418;
+  --text-strong: #333a44;
+  --muted: #4a515c;
+  --subtle: #5a626e;
+  --line: #dde1e7;
+  --line-soft: #e4e7ec;
+  --line-strong: #9aa2ad;
+  --stone: #e9ebef;
+  --stone-light: #f0f2f5;
+
+  /* Text on ink */
+  --on-ink: #eef0f3;
+  --on-ink-soft: #d6dbe2;
+  --on-ink-nav: #c4cad3;
+  --on-ink-muted: #bcc3cd;
+  --on-ink-dim: #aeb5bf;
+  --on-ink-faint: #8a929e;
+
+  /* LCD blue */
+  --lcd: #2e5bff;
+  --lcd-light: #8fa6ff;
+  --lcd-tint: #e6ecff;
+  --lcd-text: #2449d8;
+  --lcd-deep: #1a36a6;
+  --lcd-strong: #22306a;
+  --lcd-body: #2a3566;
+  --lcd-ink: #0e1a4d;
+
+  /* OLED amber */
+  --oled: #f2a23a;
+  --oled-tint: #fff0db;
+  --oled-border: #f0cf9f;
+  --oled-text: #9a5200;
+  --oled-deep: #7a4100;
+  --oled-strong: #5c3a10;
+  --oled-body: #4a3a26;
+
+  /* Self-emissive teal */
+  --emissive: #0b6b64;
+  --emissive-tint: #ddf3f0;
+  --emissive-light: #6fd6cc;
+
+  /* Viewing distance green zone (not on the brand sheet; added for the calculator) */
+  --zone-tint: #e1f3e8;
+  --zone-line: #57b07d;
+  --zone-text: #1b6b3f;
+
+  /* Viewing distance visualizations */
+  --viz-floor: #f7f8fa;
+  --viz-sight: rgba(46, 91, 255, 0.12);
+  --viz-floor-3d: #dfe3e9;
+  --viz-ceiling: #eef0f3;
+  --viz-side-wall: #e8ebf0;
+  --viz-back-wall: #f8f9fb;
+
+  --font-display: 'Bricolage Grotesque', 'Segoe UI', sans-serif;
+  --font-body: 'Source Sans 3', 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--text);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+}
+
+h1,
+h2,
+h3,
+p,
+figure,
+dl,
+dd {
+  margin: 0;
+}
+
+a {
+  color: var(--lcd-text);
+}
+
+a:hover {
+  color: var(--lcd-deep);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--lcd);
+  outline-offset: 2px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -100px;
+  z-index: 10;
+  padding: 12px 18px;
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+/* Layout */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app > main {
+  flex: 1;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-inline: 24px;
+}
+
+.section {
+  padding-top: 104px;
+}
+
+.section--end {
+  padding-bottom: 112px;
+}
+
+.grid {
+  display: grid;
+  gap: 24px;
+  margin-top: 36px;
+}
+
+.grid--200 { grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); }
+.grid--240 { grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); }
+.grid--260 { grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); }
+.grid--300 { grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); }
+.grid--320 { grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); }
+.grid--tight { gap: 16px; }
+
+/* Type */
+.display {
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.eyebrow {
+  margin-bottom: 12px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--subtle);
+}
+
+.eyebrow--lcd { color: var(--lcd-text); }
+.eyebrow--oled { color: var(--oled-text); }
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(28px, 3.4vw, 40px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.section-title--lg {
+  max-width: 760px;
+  font-size: clamp(32px, 4vw, 48px);
+  line-height: 1.08;
+}
+
+.section-lead {
+  margin-top: 14px;
+  max-width: 700px;
+  color: var(--muted);
+}
+
+/* Cards */
+.card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 32px;
+}
+
+.card--sm {
+  border-radius: 14px;
+  padding: 24px;
+}
+
+.card--dark {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--on-ink);
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 1.15;
+}
+
+.card-text {
+  color: var(--muted);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.stack--sm { gap: 8px; }
+
+/* Tags and chips */
+.tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.tag--oled { background: var(--oled); color: var(--ink); }
+.tag--lcd { background: var(--lcd); color: var(--white); }
+
+.chip {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.chip--neutral { background: var(--stone); color: var(--text-strong); }
+.chip--lcd { background: var(--lcd-tint); color: var(--lcd-deep); }
+.chip--oled { background: var(--oled-tint); color: var(--oled-deep); }
+.chip--emissive { background: var(--emissive-tint); color: var(--emissive); }
+.chip--on-ink { background: var(--ink-hover); color: var(--on-ink-soft); }
+.chip--on-ink-lcd { background: var(--ink-hover); color: var(--lcd-light); }
+.chip--on-ink-oled { background: var(--ink-hover); color: var(--oled); }
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* Callouts */
+.callout {
+  margin-top: 24px;
+  padding: 18px 24px;
+  border-radius: 12px;
+  background: var(--lcd-tint);
+  color: var(--lcd-strong);
+  font-weight: 600;
+}
+
+/* Buttons and links */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: 10px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn--sm {
+  min-height: 48px;
+  padding: 0 20px;
+  font-size: 16px;
+}
+
+.btn--dark { background: var(--ink); color: var(--white); }
+.btn--dark:hover { background: var(--ink-hover); color: var(--white); }
+
+.btn--accent { background: var(--oled); color: var(--ink); }
+.btn--accent:hover { background: #f5b45f; color: var(--ink); }
+
+.btn--light { background: var(--white); color: var(--ink); }
+.btn--light:hover { background: var(--line); color: var(--ink); }
+
+.btn--ghost {
+  border: 1.5px solid var(--muted);
+  color: var(--white);
+  font-weight: 600;
+}
+
+.btn--ghost:hover { border-color: var(--on-ink-dim); color: var(--white); }
+
+.btn--outline {
+  border: 1.5px solid var(--line-strong);
+  background: var(--white);
+  color: var(--text);
+  font-weight: 600;
+}
+
+.btn--outline:hover { border-color: var(--text); color: var(--text); }
+
+.arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  font-weight: 700;
+}
+
+/* Tables */
+.table-wrap {
+  margin-top: 28px;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--white);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 17px;
+}
+
+.data-table th,
+.data-table td {
+  padding: 16px 20px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.data-table thead tr {
+  background: var(--stone-light);
+}
+
+.data-table tbody tr {
+  border-top: 1px solid var(--line-soft);
+}
+
+.data-table tbody th {
+  font-weight: 600;
+}
+
+/* Narrow screens: a .data-table--stack table reflows into one card per row.
+   Pages lay out the cells inside each card. The markup carries explicit table
+   roles because display:block strips table semantics in some browsers. */
+.cell-label {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .table-wrap--stack {
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: none;
+  }
+
+  .data-table--stack,
+  .data-table--stack tbody,
+  .data-table--stack tr,
+  .data-table--stack th,
+  .data-table--stack td {
+    display: block;
+  }
+
+  .data-table--stack thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .data-table--stack tbody {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .data-table--stack tbody tr {
+    padding: 18px 20px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--white);
+  }
+
+  .data-table--stack tbody th,
+  .data-table--stack tbody td {
+    padding: 0;
+  }
+
+  .data-table--stack .cell-label {
+    display: inline;
+  }
+}
+
+/* Diagrams drawn with markup */
+.diagram {
+  position: relative;
+}
+
+.figcaption {
+  margin-top: 12px;
+  font-size: 15px;
+  color: var(--subtle);
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}

@@ -1,0 +1,130 @@
+.jump-links {
+  margin-top: 28px;
+}
+
+.jump-links ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.jump-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1.5px solid var(--muted);
+  color: var(--white);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.jump-links a:hover {
+  border-color: var(--on-ink-dim);
+  color: var(--white);
+}
+
+.features-section h2 {
+  scroll-margin-top: 24px;
+}
+
+.format-group-label {
+  margin: 40px 0 16px;
+}
+
+.format-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.format-card h3 {
+  font-family: var(--font-display);
+  font-size: 24px;
+}
+
+.format-card__text {
+  color: var(--muted);
+  font-size: 17px;
+}
+
+.format-card--new {
+  padding: 28px;
+}
+
+.format-card--new h3 {
+  font-size: 26px;
+  color: var(--white);
+}
+
+.format-card--new .format-card__text {
+  font-size: 18px;
+  color: var(--on-ink-muted);
+}
+
+/* Gaming */
+.gaming {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 48px;
+}
+
+.gaming__intro {
+  flex: 1 1 340px;
+  min-width: 0;
+}
+
+.signal-chain {
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.signal-chain__node {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.signal-chain__node--tv {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--white);
+}
+
+.signal-chain__wire {
+  flex: 0 0 32px;
+  height: 2px;
+  background: var(--line-strong);
+}
+
+.gaming__terms {
+  flex: 2 1 560px;
+  min-width: 0;
+  margin: 0;
+}
+
+.gaming__terms dt {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.gaming__terms dd {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 17px;
+}

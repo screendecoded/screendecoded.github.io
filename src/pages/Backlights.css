@@ -1,0 +1,203 @@
+/* Local dimming diagrams */
+.dimming-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0;
+}
+
+.dimming-card__screen {
+  padding: 16px;
+  background: #0b0d10;
+}
+
+.zones {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  display: grid;
+}
+
+.zones__zone {
+  border-radius: 2px;
+}
+
+.zones--fine .zones__zone {
+  border-radius: 0;
+}
+
+.zones__moon {
+  position: absolute;
+  left: calc(75% - 14px);
+  top: calc(30% - 14px);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--white);
+}
+
+.dimming-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px 28px 28px;
+}
+
+.dimming-card__kind {
+  font-weight: 600;
+  color: var(--lcd-deep);
+}
+
+.dark-tip {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px 40px;
+  padding: 28px 32px;
+  border-radius: 16px;
+  background: var(--ink);
+  color: var(--on-ink);
+}
+
+.dark-tip__copy {
+  flex: 1 1 480px;
+  min-width: 0;
+}
+
+.dark-tip__title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.dark-tip__copy p:last-child {
+  margin-top: 6px;
+  color: var(--on-ink-muted);
+}
+
+/* Panel types */
+.panel-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 28px;
+}
+
+.panel-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.panel-card__name {
+  font-family: var(--font-display);
+  font-size: 30px;
+  line-height: 1.3;
+}
+
+.panel-card__full {
+  margin-top: 2px;
+  font-size: 16px;
+  color: var(--subtle);
+}
+
+.panel-card__rare {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--stone);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.ratings {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 16px;
+}
+
+.ratings__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.ratings__bars {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+}
+
+.ratings__bar {
+  width: 28px;
+  height: 8px;
+  border-radius: 4px;
+  background: #d5dae2;
+}
+
+.ratings__bar--on {
+  background: var(--lcd);
+}
+
+.panel-card__fit {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--line-soft);
+  font-size: 16px;
+  color: var(--text-strong);
+}
+
+/* Glossy vs matte */
+.coating-card {
+  overflow: hidden;
+  padding: 0;
+}
+
+.coating-card__screen {
+  position: relative;
+  aspect-ratio: 16 / 7;
+}
+
+.coating-card__screen--glossy { background: #11141a; }
+.coating-card__screen--matte { background: #1b1f26; }
+
+.reflection--glossy {
+  position: absolute;
+  left: 58%;
+  top: 18%;
+  width: 22%;
+  height: 52%;
+  border: 3px solid rgba(255, 255, 255, 0.55);
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.reflection--matte {
+  position: absolute;
+  left: 54%;
+  top: 10%;
+  width: 30%;
+  height: 70%;
+  border-radius: 40%;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 40px 30px rgba(255, 255, 255, 0.08);
+}
+
+.coating-card__body {
+  padding: 24px 28px 28px;
+}
+
+.coating-card__body p {
+  margin-top: 8px;
+  color: var(--muted);
+}
+
+#room {
+  scroll-margin-top: 24px;
+}

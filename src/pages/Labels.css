@@ -1,0 +1,208 @@
+.decoder-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.search {
+  flex: 1 1 360px;
+  max-width: 480px;
+}
+
+.search label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.search__field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 52px;
+  padding: 0 16px;
+  border-radius: 10px;
+  border: 1.5px solid var(--line-strong);
+  background: var(--white);
+}
+
+.search__field:focus-within {
+  border-color: var(--lcd);
+  box-shadow: 0 0 0 3px var(--lcd-tint);
+}
+
+.search__field input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  font-size: 17px;
+  background: transparent;
+  color: var(--text);
+}
+
+.family-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.family-filter button {
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1.5px solid var(--line-strong);
+  background: var(--white);
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.family-filter button:hover {
+  border-color: var(--text);
+}
+
+.family-filter .family-filter--lcd { color: var(--lcd-deep); }
+.family-filter .family-filter--oled { color: var(--oled-deep); }
+.family-filter .family-filter--emissive { color: var(--emissive); }
+
+.family-filter button[aria-pressed='true'] {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--white);
+}
+
+/* Wider screens keep the full table and scroll it if needed; narrow screens
+   switch to cards below, so they must not inherit this minimum width. */
+@media (min-width: 641px) {
+  .labels-table {
+    min-width: 820px;
+  }
+}
+
+.labels-table thead tr {
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.labels-table thead th {
+  padding-block: 14px;
+}
+
+.labels-table tbody th,
+.labels-table tbody td {
+  padding-block: 18px;
+}
+
+.labels-table tbody th {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.labels-table__note {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--subtle);
+}
+
+.labels-table__used-by {
+  color: var(--muted);
+}
+
+.labels-table__empty td {
+  padding: 32px 20px;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* Narrow screens: one card per label — name and family on top, then the
+   explanation, then who uses it. */
+@media (max-width: 640px) {
+  .labels-table tbody tr:not(.labels-table__empty) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      'name family'
+      'desc desc'
+      'used used';
+    column-gap: 12px;
+  }
+
+  .labels-table tbody th,
+  .labels-table tbody td {
+    padding: 0;
+  }
+
+  .labels-table .labels-table__name {
+    grid-area: name;
+    line-height: 1.3;
+  }
+
+  .labels-table .labels-table__family {
+    grid-area: family;
+    align-self: start;
+  }
+
+  .labels-table .labels-table__desc {
+    grid-area: desc;
+    margin-top: 8px;
+  }
+
+  .labels-table .labels-table__used-by {
+    grid-area: used;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--line-soft);
+    font-size: 15px;
+  }
+
+  .labels-table .cell-label {
+    font-weight: 700;
+    color: var(--text-strong);
+  }
+
+  .labels-table .labels-table__empty td {
+    padding: 8px 0;
+  }
+}
+
+.labels-count {
+  margin-top: 14px;
+  font-size: 15px;
+  color: var(--subtle);
+}
+
+.mixup-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.mixup-title span {
+  color: var(--line-strong);
+}
+
+.mixup-text {
+  margin-top: 10px;
+  color: var(--muted);
+}
+
+.labels-takeaway {
+  margin-top: 32px;
+  padding: 32px 36px;
+  border-radius: 16px;
+  background: var(--lcd-tint);
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--lcd-ink);
+}
