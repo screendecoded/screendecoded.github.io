@@ -10,7 +10,10 @@ import {
   type Units,
 } from '../viewing'
 
-// Floor plan, TV at the top, viewer below, drawn in a fixed-size frame. The
+// Floor plan, TV at the top, viewer below, drawn in a fixed-size frame. Only
+// labels with a fixed home (wall, TV size, seat angle, distance) are drawn here;
+// the ideal seat and green zone move with the seat, so the page's legend names
+// them instead and they can never collide with other labels. The
 // scale adapts: the frame always fits the TV, the green zone and the "a bit
 // far" margin, so the seat moves within that range; sitting farther back
 // zooms the whole scene out to keep the seat in frame.
@@ -36,7 +39,8 @@ export function TopView({ diagonalIn, distanceCm, units }: TopViewProps) {
   const idealY = y(ideal)
   const zoneTop = y(ideal * (1 - GREEN_ZONE))
   const zoneBottom = y(ideal * (1 + GREEN_ZONE))
-  const dimX = WIDTH - 22
+  // Leaves room for the rotated distance label at the larger phone font size.
+  const dimX = WIDTH - 30
 
   const label =
     `Top view. A ${diagonalIn}-inch TV with the seat ${speakDistance(distanceCm, units)} away, ` +
@@ -56,9 +60,6 @@ export function TopView({ diagonalIn, distanceCm, units }: TopViewProps) {
       <rect x={0} y={zoneTop} width={WIDTH} height={zoneBottom - zoneTop} fill="var(--zone-tint)" />
       <line x1={0} x2={WIDTH} y1={zoneTop} y2={zoneTop} stroke="var(--zone-line)" strokeWidth={1} />
       <line x1={0} x2={WIDTH} y1={zoneBottom} y2={zoneBottom} stroke="var(--zone-line)" strokeWidth={1} />
-      <text x={dimX - 14} y={zoneBottom - 6} textAnchor="end" className="viz__label viz__label--zone">
-        Green zone
-      </text>
       <polygon
         points={`${CENTER_X},${idealY} ${CENTER_X - halfTv},${TV_Y} ${CENTER_X + halfTv},${TV_Y}`}
         fill="none"
@@ -67,9 +68,6 @@ export function TopView({ diagonalIn, distanceCm, units }: TopViewProps) {
         strokeDasharray="6 5"
       />
       <line x1={0} x2={WIDTH} y1={idealY} y2={idealY} stroke="var(--oled)" strokeWidth={2} strokeDasharray="6 5" />
-      <text x={12} y={idealY - 8} className="viz__label viz__label--ideal">
-        Ideal {IDEAL_ANGLE_DEG}° · {formatDistance(ideal, units)}
-      </text>
 
       {/* Your seat: sightlines to the screen edges */}
       <polygon

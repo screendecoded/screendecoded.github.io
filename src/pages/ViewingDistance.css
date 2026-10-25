@@ -251,6 +251,23 @@
   }
 }
 
+.calc__stat-note {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--muted);
+}
+
+.calc__note {
+  margin-top: 14px;
+  max-width: 640px;
+  font-size: 16px;
+  color: var(--oled-strong);
+}
+
 .calc__actions {
   margin-top: 20px;
   display: flex;
@@ -287,8 +304,47 @@
 
 .viz__label--muted { fill: var(--subtle); font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; }
 .viz__label--strong { font-weight: 700; fill: var(--text); }
-.viz__label--zone { font-weight: 700; fill: var(--zone-text); }
-.viz__label--ideal { font-weight: 700; fill: var(--oled-deep); }
+
+/* Legend under the top view: names the lines that move with the seat. */
+.viz-legend {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  font-size: 15px;
+  color: var(--text-strong);
+}
+
+.viz-legend li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-legend__key {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.viz-legend__key--seat {
+  background: var(--viz-sight);
+  border: 2px solid var(--lcd);
+}
+
+.viz-legend__key--ideal {
+  height: 0;
+  border-top: 3px dashed var(--oled);
+  border-radius: 0;
+}
+
+.viz-legend__key--zone {
+  background: var(--zone-tint);
+  border: 1px solid var(--zone-line);
+}
 .viz__label--angle { font-family: var(--font-display); font-size: 20px; font-weight: 700; fill: var(--lcd-text); }
 
 @media (max-width: 760px) {

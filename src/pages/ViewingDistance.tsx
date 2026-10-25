@@ -42,8 +42,14 @@ const loadUnits = (): Units => (loadSaved('units') === 'imperial' ? 'imperial' :
 
 const clampDistance = (cm: number) => Math.min(MAX_DISTANCE_CM, Math.max(MIN_DISTANCE_CM, cm))
 
-function nearestPreset(diagonalIn: number) {
-  return presetSizes.reduce((best, size) => (Math.abs(size - diagonalIn) < Math.abs(best - diagonalIn) ? size : best))
+/**
+ * The listed size that would put this seat in the green zone, closest to the
+ * exact ideal size; null if none does (roughly closer than 1.1 m or farther than 3.3 m).
+ */
+function suggestPreset(distanceCm: number, idealSize: number) {
+  const fitting = presetSizes.filter((preset) => fitFor(distanceCm, idealDistanceCm(preset)) === 'ideal')
+  if (fitting.length === 0) return null
+  return fitting.reduce((best, preset) => (Math.abs(preset - idealSize) < Math.abs(best - idealSize) ? preset : best))
 }
 
 export function ViewingDistance() {
@@ -64,7 +70,10 @@ export function ViewingDistance() {
   const angle = viewingAngleDeg(size, distanceCm)
   const fit = fitFor(distanceCm, ideal)
   const bestSize = idealDiagonalIn(distanceCm)
-  const suggestedSize = nearestPreset(bestSize)
+  const suggestedSize = suggestPreset(distanceCm, bestSize)
+  // Where the ideal size falls outside the listed sizes, say so rather than imply a listed size will do.
+  const seatBeyondSizes =
+    bestSize < presetSizes[0] ? 'close' : bestSize > presetSizes[presetSizes.length - 1] ? 'far' : null
   const metric = units === 'metric'
   // Slider ends in the slider's own unit (cm, or whole inches). The scale labels
   // are formatted from these same values, so they always match where it stops.
@@ -114,9 +123,22 @@ export function ViewingDistance() {
             <figure className="calc__view calc__view--top card">
               <p className="calc__view-title">From above</p>
               <TopView diagonalIn={size} distanceCm={distanceCm} units={units} />
-              <figcaption className="figcaption">
-                Blue: what you see from your seat. Dashed amber: the ideal {IDEAL_ANGLE_DEG}° seat. Green: within{' '}
-                {GREEN_ZONE * 100}% of it.
+              <figcaption>
+                <ul className="viz-legend">
+                  <li>
+                    <span className="viz-legend__key viz-legend__key--seat" aria-hidden="true" />
+                    Your seat: {formatDistance(distanceCm, units)}, {Math.round(angle)}° of view
+                  </li>
+                  <li>
+                    <span className="viz-legend__key viz-legend__key--ideal" aria-hidden="true" />
+                    Ideal seat ({IDEAL_ANGLE_DEG}°): {formatDistance(ideal, units)}
+                  </li>
+                  <li>
+                    <span className="viz-legend__key viz-legend__key--zone" aria-hidden="true" />
+                    Green zone (±{GREEN_ZONE * 100}%): {formatDistance(ideal * (1 - GREEN_ZONE), units)}–
+                    {formatDistance(ideal * (1 + GREEN_ZONE), units)}
+                  </li>
+                </ul>
               </figcaption>
             </figure>
 
@@ -225,7 +247,14 @@ export function ViewingDistance() {
                 </div>
                 <div>
                   <dt>Ideal size for this seat</dt>
-                  <dd>{Math.round(bestSize)}″</dd>
+                  <dd>
+                    {Math.round(bestSize)}″
+                    {seatBeyondSizes && (
+                      <span className="calc__stat-note">
+                        {seatBeyondSizes === 'close' ? 'smaller than the listed sizes' : 'larger than the listed sizes'}
+                      </span>
+                    )}
+                  </dd>
                 </div>
               </dl>
               {fit !== 'ideal' && (
@@ -237,7 +266,7 @@ export function ViewingDistance() {
                   >
                     Move to {formatDistance(clampDistance(ideal), units)}
                   </button>
-                  {suggestedSize !== size && (
+                  {suggestedSize !== null && suggestedSize !== size && (
                     <button
                       type="button"
                       className="btn btn--sm btn--outline"
@@ -247,6 +276,13 @@ export function ViewingDistance() {
                     </button>
                   )}
                 </div>
+              )}
+              {fit !== 'ideal' && suggestedSize === null && (
+                <p className="calc__note">
+                  {seatBeyondSizes === 'far'
+                    ? 'This seat is farther than the listed sizes are designed for. Try sitting closer, or consider a projector, which can fill a much bigger screen.'
+                    : 'None of the listed sizes fit a seat this close. Try sitting farther back, or enter a smaller size under Other size.'}
+                </p>
               )}
             </div>
           </div>

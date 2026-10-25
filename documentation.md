@@ -55,13 +55,15 @@ Screen Decoded/
 ├── package.json          ← project name, commands, and list of tools
 ├── vite.config.ts        ← Vite settings
 ├── public/
-│   └── favicon.svg       ← the small icon in the browser tab
+│   ├── favicon.svg       ← the small icon in the browser tab
+│   └── og-image.png      ← the picture shown when a link is shared
 ├── src/                  ← all the site's source code
 │   ├── main.tsx          ← starting point: puts the app on the page
 │   ├── App.tsx           ← decides which page to show
 │   ├── router.ts         ← tracks the current web address
 │   ├── site.ts           ← list of page addresses and menu items
 │   ├── viewing.ts        ← maths for the viewing distance calculator
+│   ├── consent.ts        ← the only code that saves anything in the browser
 │   ├── index.css         ← colours, fonts and shared styles
 │   ├── components/       ← reusable bricks (header, footer, drawings…)
 │   ├── pages/            ← one file per page, plus its own CSS
@@ -70,8 +72,6 @@ Screen Decoded/
 ├── dist/                 ← the finished site (created by npm run build)
 └── node_modules/         ← downloaded tools (never edit by hand)
 ```
-
-Some files are leftovers from the starter template and aren't used: `src/App.css`, `src/assets/` and `public/icons.svg`. You can delete them.
 
 ---
 
@@ -269,7 +269,7 @@ On narrow screens the menu is hidden behind a "Menu" button. The button flips a 
 
 ### Infinite contrast editorial (`ContrastComparison.tsx`)
 
-The "Why infinite contrast matters" button flips an `open` state. The editorial text uses the HTML `hidden` attribute, so it is hidden until opened. The original text is also kept in `infinite-contrast.md`, but **the site shows the copy inside the component**, so edit both if you change the wording.
+The "Why infinite contrast matters" button flips an `open` state. The editorial text uses the HTML `hidden` attribute, so it is hidden until opened. To change the wording, edit the text directly in the component.
 
 ---
 

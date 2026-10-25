@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-"Screen Decoded" is a static, content-driven TV buying guide (React 19 + TypeScript + Vite 8). It is a React port of the Claude Design canvas "Screen Decoded" (https://claude.ai/artifact/XDad2n8t9k1zytR6NnkXSR): each site artboard became one page in `src/pages/`; the "Brand sheet" artboard became the design tokens at the top of `src/index.css`. The README is the public-facing project summary (keep it short; deeper explanation lives in `documentation.md`, written for beginner programmers); `src/App.css`, `src/assets/` and `public/icons.svg` are unused template leftovers.
+"Screen Decoded" is a static, content-driven TV buying guide (React 19 + TypeScript + Vite 8). It is a React port of the Claude Design canvas "Screen Decoded" (https://claude.ai/artifact/XDad2n8t9k1zytR6NnkXSR): each site artboard became one page in `src/pages/`; the "Brand sheet" artboard became the design tokens at the top of `src/index.css`. The README is the public-facing project summary (keep it short; deeper explanation lives in `documentation.md`, written for beginner programmers).
 
 ## Architecture
 
@@ -37,7 +37,7 @@ There is no test runner configured. Type errors only surface through `npm run bu
   - `erasableSyntaxOnly` — no `enum`, `namespace`, or constructor parameter properties; use union types / `as const` objects instead.
   - `noUnusedLocals` / `noUnusedParameters` — unused code fails the build.
 - `eslint-plugin-react-refresh` expects files that export components to export only components (keeps HMR working).
-- Static assets in `public/` are served from `/` (e.g. `/icons.svg#id` sprite references); assets imported from `src/assets/` are bundled and hashed.
+- Static assets in `public/` (favicon, share image) are served from `/` as-is; files imported from `src/` are bundled and hashed.
 
 ## Environment
 

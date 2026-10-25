@@ -154,29 +154,26 @@ export function Technologies() {
               role="img"
               aria-label="Exploded view of an LCD TV: backlight at the back, then the liquid-crystal panel, then the color filter layer, then the picture you see."
             >
+              {/* Each layer carries its number from the list, so no caption can collide with the slanted layers. */}
               <div className="exploded__layer exploded__layer--backlight">
+                <span className="exploded__badge">1</span>
                 {backlightLeds.map((led) => (
                   <div key={led} className="exploded__led" />
                 ))}
               </div>
-              <div className="exploded__layer exploded__layer--panel" />
+              <div className="exploded__layer exploded__layer--panel">
+                <span className="exploded__badge">2</span>
+              </div>
               <div className="exploded__layer exploded__layer--filter">
+                <span className="exploded__badge">3</span>
                 <div style={{ background: 'rgba(230, 70, 60, 0.55)' }} />
                 <div style={{ background: 'rgba(60, 190, 110, 0.55)' }} />
                 <div style={{ background: 'rgba(60, 110, 240, 0.55)' }} />
               </div>
-              <span className="exploded__label" style={{ left: 0, top: 352, color: 'var(--lcd-deep)' }}>
-                1 · Backlight
-              </span>
-              <span className="exploded__label" style={{ left: '30%', top: 330 }}>
-                2 · LCD panel
-              </span>
-              <span className="exploded__label" style={{ left: '60%', top: 278 }}>
-                3 · Color filter
-              </span>
             </div>
             <figcaption className="figcaption">
-              Exploded view. The light always starts at the back and passes through every layer.
+              Exploded view: the numbers match the list of layers. The light always starts at the back and passes
+              through every layer.
             </figcaption>
           </figure>
         </div>

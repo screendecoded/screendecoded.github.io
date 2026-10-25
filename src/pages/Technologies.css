@@ -156,11 +156,25 @@
   opacity: 0.85;
 }
 
-.exploded__label {
+/* Numbered marker in each layer's top-left corner, matching .layer-steps__num.
+   The counter-skew keeps the number upright on the slanted layer. */
+.exploded__badge {
   position: absolute;
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--text-strong);
+  top: 10px;
+  left: 10px;
+  z-index: 1;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--lcd);
+  color: var(--white);
+  font-size: 15px;
+  font-weight: 700;
+  box-shadow: 0 0 0 2px var(--white);
+  transform: skewY(12deg);
 }
 
 /* OLED families */

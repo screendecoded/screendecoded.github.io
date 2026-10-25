@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import './ContrastComparison.css'
 
-// LCD vs OLED contrast, with an expandable editorial piece on infinite
-// contrast. The editorial text's source is infinite-contrast.md at the repo root.
+// LCD vs OLED contrast, with an expandable editorial piece on infinite contrast.
 export function ContrastComparison() {
   const [open, setOpen] = useState(false)
 
