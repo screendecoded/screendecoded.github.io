@@ -11,7 +11,17 @@ export const paths = {
   smartTv: '/smart-tv',
   viewingDistance: '/viewing-distance',
   checklist: '/checklist',
+  privacy: '/privacy',
 } as const
+
+/** Shown on the privacy notice as the party responsible for the site. */
+export const privacyContact = {
+  name: 'Screen Decoded',
+  email: 'iridescentcolor.movable141@passinbox.com',
+}
+
+/** Update this whenever the privacy notice changes. */
+export const privacyUpdated = '25 October 2026'
 
 export type Path = (typeof paths)[keyof typeof paths]
 
@@ -64,6 +74,11 @@ export const pageMeta: Record<Path, PageMeta> = {
     title: 'TV buying checklist — Screen Decoded',
     description:
       'Five questions to ask about every TV on your shortlist, plus tips for judging the picture in the shop. Tick them off and print.',
+  },
+  [paths.privacy]: {
+    title: 'Privacy notice — Screen Decoded',
+    description:
+      'No cookies, no tracking, no analytics. What GitHub Pages logs when you visit, what can be saved on your device, and your rights.',
   },
 }
 

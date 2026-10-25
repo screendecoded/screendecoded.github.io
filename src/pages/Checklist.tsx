@@ -1,7 +1,9 @@
 import { useEffect, useState, type ReactNode } from 'react'
+import { loadSaved, save, useRememberOnDevice } from '../consent'
 import { Link } from '../components/Link'
 import { PageHero } from '../components/PageHero'
 import { PageNav } from '../components/PageNav'
+import { RememberToggle } from '../components/RememberToggle'
 import { paths } from '../site'
 import './Checklist.css'
 
@@ -49,12 +51,11 @@ const shopTips = [
   { title: 'Step to the side', text: 'View from where your furthest seat would be. Some panels fade off-angle.' },
 ]
 
-const STORAGE_KEY = 'screen-decoded:checklist'
-
-// Ticks are a per-browser convenience; the page works the same when storage is unavailable.
+// Ticks are only remembered between visits if the visitor agrees (see consent.ts);
+// otherwise they last for this visit.
 function loadChecked(): string[] {
   try {
-    const stored: unknown = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '[]')
+    const stored: unknown = JSON.parse(loadSaved('checklist') ?? '[]')
     return Array.isArray(stored) ? stored.filter((id): id is string => typeof id === 'string') : []
   } catch {
     return []
@@ -63,14 +64,12 @@ function loadChecked(): string[] {
 
 export function Checklist() {
   const [checked, setChecked] = useState<string[]>(loadChecked)
+  const remember = useRememberOnDevice()
 
+  // Also runs the moment "Remember on this device" is switched on, saving the ticks made so far.
   useEffect(() => {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(checked))
-    } catch {
-      // Storage blocked (private mode, disabled site data): keep state in memory only.
-    }
-  }, [checked])
+    if (remember) save('checklist', JSON.stringify(checked))
+  }, [checked, remember])
 
   const done = questions.filter((q) => checked.includes(q.id)).length
 
@@ -129,6 +128,8 @@ export function Checklist() {
               )
             })}
           </ol>
+
+          <RememberToggle />
 
           <div className="checklist__actions no-print">
             <button type="button" className="btn btn--sm btn--dark" onClick={() => window.print()}>

@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { Link } from '../components/Link'
 import { PageHero } from '../components/PageHero'
 import { PageNav } from '../components/PageNav'
+import { RememberToggle } from '../components/RememberToggle'
+import { loadSaved, save, useRememberOnDevice } from '../consent'
 import { PerspectiveView } from '../components/PerspectiveView'
 import { TopView } from '../components/TopView'
 import { paths } from '../site'
@@ -35,15 +37,8 @@ const fitText: Record<Fit, { title: string; tone: 'zone' | 'warn' }> = {
   'too-far': { title: 'Too far', tone: 'warn' },
 }
 
-const UNITS_KEY = 'screen-decoded:units'
-
-function loadUnits(): Units {
-  try {
-    return localStorage.getItem(UNITS_KEY) === 'imperial' ? 'imperial' : 'metric'
-  } catch {
-    return 'metric'
-  }
-}
+// Remembered between visits only if the visitor agrees (see consent.ts).
+const loadUnits = (): Units => (loadSaved('units') === 'imperial' ? 'imperial' : 'metric')
 
 const clampDistance = (cm: number) => Math.min(MAX_DISTANCE_CM, Math.max(MIN_DISTANCE_CM, cm))
 
@@ -58,14 +53,12 @@ export function ViewingDistance() {
   const [lastPreset, setLastPreset] = useState(65)
   const [distanceCm, setDistanceCm] = useState(250)
   const [units, setUnits] = useState<Units>(loadUnits)
+  const remember = useRememberOnDevice()
 
+  // Also runs the moment "Remember on this device" is switched on, saving the current choice.
   useEffect(() => {
-    try {
-      localStorage.setItem(UNITS_KEY, units)
-    } catch {
-      // Storage blocked: the choice lasts for this visit only.
-    }
-  }, [units])
+    if (remember) save('units', units)
+  }, [units, remember])
 
   const ideal = idealDistanceCm(size)
   const angle = viewingAngleDeg(size, distanceCm)
@@ -170,6 +163,7 @@ export function ViewingDistance() {
                   <span>{formatDistance(sliderToCm(sliderMin), units)}</span>
                   <span>{formatDistance(sliderToCm(sliderMax), units)}</span>
                 </div>
+                <RememberToggle />
               </div>
 
               <div className="calc__field">

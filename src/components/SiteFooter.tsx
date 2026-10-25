@@ -1,4 +1,4 @@
-import { lastUpdated, navItems } from '../site'
+import { lastUpdated, navItems, paths } from '../site'
 import { Link } from './Link'
 
 export function SiteFooter() {
@@ -14,6 +14,9 @@ export function SiteFooter() {
             reference.
           </p>
           <p className="site-footer__updated">Updated {lastUpdated}</p>
+          <p className="site-footer__legal">
+            <Link href={paths.privacy}>Privacy notice</Link> · No cookies, no tracking
+          </p>
         </div>
         <nav aria-label="Footer">
           <ul>

@@ -8,6 +8,7 @@ import { Features } from './pages/Features'
 import { Home } from './pages/Home'
 import { Labels } from './pages/Labels'
 import { NotFound } from './pages/NotFound'
+import { Privacy } from './pages/Privacy'
 import { SmartTv } from './pages/SmartTv'
 import { Technologies } from './pages/Technologies'
 import { ViewingDistance } from './pages/ViewingDistance'
@@ -24,6 +25,7 @@ const routes: Record<Path, ComponentType> = {
   [paths.smartTv]: SmartTv,
   [paths.viewingDistance]: ViewingDistance,
   [paths.checklist]: Checklist,
+  [paths.privacy]: Privacy,
 }
 
 const isRoute = (path: string): path is Path => Object.hasOwn(routes, path)

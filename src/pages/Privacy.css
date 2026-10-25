@@ -1,0 +1,40 @@
+/* A comfortable reading width, left-aligned with the page heading. */
+.privacy {
+  max-width: 760px;
+  padding-block: 64px 112px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.privacy h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(24px, 3vw, 30px);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+/* Direct children only, so the switch's own text keeps its spacing. */
+.privacy section > p,
+.privacy section > ul {
+  margin-top: 12px;
+}
+
+.privacy section > ul {
+  padding-left: 22px;
+}
+
+.privacy li + li {
+  margin-top: 6px;
+}
+
+.privacy a {
+  overflow-wrap: anywhere;
+}
+
+.privacy__updated {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--subtle);
+}

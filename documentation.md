@@ -79,9 +79,9 @@ Some files are leftovers from the starter template and aren't used: `src/App.css
 
 Here is what happens, step by step, when someone visits the site.
 
-**Step 1: `index.html` loads.** It is almost empty: it loads the fonts and contains one empty box, `<div id="root"></div>`, plus a line that loads `src/main.tsx`.
+**Step 1: `index.html` loads.** It is almost empty: it contains one empty box, `<div id="root"></div>`, plus a line that loads `src/main.tsx`.
 
-**Step 2: `main.tsx` starts React.** It finds that empty box and tells React to draw the `App` component inside it:
+**Step 2: `main.tsx` starts React.** It loads the fonts (which are stored with the site, so visitors never contact Google), then finds that empty box and tells React to draw the `App` component inside it:
 
 ```tsx
 createRoot(document.getElementById('root')!).render(<App />)
@@ -185,6 +185,7 @@ Each page is a file in `src/pages/` with a matching `.css` file for its own styl
 | `SmartTv.tsx` | `/smart-tv` | Smart TV platforms (webOS, Tizen, Google TV…) |
 | `ViewingDistance.tsx` | `/viewing-distance` | The viewing distance calculator |
 | `Checklist.tsx` | `/checklist` | Five-question buying checklist |
+| `Privacy.tsx` | `/privacy` | Privacy notice (linked from the footer). Update it, and `privacyUpdated` in `site.ts`, whenever the site starts loading or saving something new. |
 | `NotFound.tsx` | any other address | "This page is off the air" |
 
 Shared building blocks live in `src/components/`:
@@ -198,6 +199,7 @@ Shared building blocks live in `src/components/`:
 | `Link.tsx` | An internal link that switches pages without reloading |
 | `Icons.tsx` | The logo mark and the arrow icon |
 | `ContrastComparison.tsx` | The LCD vs OLED contrast cards and the "Why infinite contrast matters" editorial |
+| `RememberToggle.tsx` | The "Remember on this device" switch that controls all saving (see section 8) |
 | `TopView.tsx`, `PerspectiveView.tsx` | The two calculator drawings |
 
 ---
@@ -255,7 +257,9 @@ In plain words: keep a label if it matches the chosen family *and* its name cont
 
 ### Checklist (`Checklist.tsx`)
 
-The ticked items are stored as state, and also saved in the browser's **localStorage**, a small storage area each website gets in the visitor's browser. This means ticks survive a page reload. The code that reads and writes localStorage is wrapped in `try { … } catch { … }` blocks. That's a safety net: some browsers (for example in private mode) block storage. If that happens the checklist still works; it just won't remember ticks.
+The ticked items are stored as state. They can also be saved in the browser's **localStorage**, a small storage area each website gets in the visitor's browser, so ticks survive a page reload. But EU privacy rules say a site must ask before saving anything on a visitor's device, so **nothing is saved until the visitor agrees**. Below the checklist there's a **"Remember on this device"** switch, off by default. Switching it on saves the ticks; switching it off deletes everything the site saved, so the site forgets the visitor again. The same switch appears in the viewing distance calculator; it's one shared setting.
+
+All saving goes through one file, `src/consent.ts`. Its `save` function quietly does nothing while the switch is off, and pages never use localStorage directly. That file also wraps every storage call in `try { … } catch { … }` blocks as a safety net: some browsers (for example in private mode) block storage. If that happens the checklist still works; it just won't remember ticks.
 
 The "Print checklist" button calls the browser's print function. Special print styles hide the header, footer and buttons.
 
@@ -299,7 +303,7 @@ Distances are always stored in **centimetres** inside the code. They're only con
 
 The page holds four pieces of state: the screen size, any custom size you typed, the seat distance, and the unit choice (metric or imperial). From those it calculates everything else on every redraw: the viewing angle, the rating, the suggested size. Nothing calculated is stored, so it can never get out of sync.
 
-Your unit choice is saved in localStorage, the same way as the checklist ticks.
+Your unit choice can be remembered the same way as the checklist ticks, with the same "Remember on this device" switch.
 
 ### Part 3: the drawings (`TopView.tsx` and `PerspectiveView.tsx`)
 
