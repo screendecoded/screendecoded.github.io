@@ -152,6 +152,11 @@ input {
   flex: 1;
 }
 
+/* Main only takes focus from "Skip to content"; a ring around the whole page would look like a glitch. */
+.app > main:focus {
+  outline: none;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;

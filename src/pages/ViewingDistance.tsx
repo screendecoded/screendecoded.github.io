@@ -98,7 +98,7 @@ export function ViewingDistance() {
       <PageHero
         eyebrow="Chapter 06 · Room fit"
         title="Find your ideal viewing distance"
-        lead="Pick a screen size and move the slider to where you will sit. The pictures show how the TV fits your room and your view."
+        lead="Move the slider to where you will sit, then pick a screen size. The pictures show how the TV fits your room and your view."
       />
 
       <section aria-labelledby="calculator" className="container" style={{ paddingTop: 64 }}>

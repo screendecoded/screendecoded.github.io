@@ -68,7 +68,8 @@ function App() {
         Skip to content
       </a>
       <SiteHeader currentPath={path} />
-      <main id="main">
+      {/* tabIndex lets "Skip to content" move keyboard focus here in every browser. */}
+      <main id="main" tabIndex={-1}>
         <Page />
       </main>
       <SiteFooter />
