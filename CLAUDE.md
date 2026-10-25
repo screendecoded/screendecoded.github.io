@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-"Screen Decoded" is a static, content-driven TV buying guide (React 19 + TypeScript + Vite 8). It is a React port of the Claude Design canvas "Screen Decoded" (https://claude.ai/artifact/XDad2n8t9k1zytR6NnkXSR): each site artboard became one page in `src/pages/`; the "Brand sheet" artboard became the design tokens at the top of `src/index.css`. The README is still the stock template README; `src/App.css`, `src/assets/` and `public/icons.svg` are unused template leftovers.
+"Screen Decoded" is a static, content-driven TV buying guide (React 19 + TypeScript + Vite 8). It is a React port of the Claude Design canvas "Screen Decoded" (https://claude.ai/artifact/XDad2n8t9k1zytR6NnkXSR): each site artboard became one page in `src/pages/`; the "Brand sheet" artboard became the design tokens at the top of `src/index.css`. The README is the public-facing project summary (keep it short; deeper explanation lives in `documentation.md`, written for beginner programmers); `src/App.css`, `src/assets/` and `public/icons.svg` are unused template leftovers.
 
 ## Architecture
 

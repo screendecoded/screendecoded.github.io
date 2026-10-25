@@ -1,78 +1,34 @@
-# React + TypeScript + Vite
+# Screen Decoded
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**A TV buying guide in plain language: https://screendecoded.github.io**
 
-Currently, two official plugins are available:
+QLED, QNED, Mini LED, QD-OLED, Micro RGB… Screen Decoded explains what the labels on the box actually mean, so everyday buyers can compare TVs with confidence. It is not a technical reference.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## What's on the site
 
-## React Compiler
+- **Display technologies**: CRT to MicroLED, how LCD layers work, and the two OLED families
+- **Backlights & panels**: local dimming, Mini LED, contrast, VA vs IPS, glossy vs matte
+- **Labels decoded**: a searchable table of marketing names and what they mean
+- **HDR & gaming** and **Smart TV platforms**
+- **Viewing distance calculator**: the ideal seat for any screen size, with top and perspective views
+- **Buying checklist**: five questions to ask about every TV on your shortlist
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## Privacy
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+No cookies, no analytics, no tracking, and no requests to third-party servers; even the fonts are served from the site. Checklist ticks and unit choices are only saved in the visitor's browser if they switch on "Remember on this device". See the [privacy notice](https://screendecoded.github.io/privacy).
 
-## Expanding the ESLint configuration
+## Development
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Built with React, TypeScript and Vite. You need [Node.js](https://nodejs.org) 24.
 
 ```
-
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+npm install      # once, to download the tools
+npm run dev      # local preview at http://localhost:5173, updates as you save
+npm run build    # type-check and build the finished site into dist/
+npm run lint     # check the code for common mistakes
+npm run preview  # serve the built site locally
 ```
+
+Every push to `master` is linted, built and published to GitHub Pages automatically by [.github/workflows/deploy.yml](.github/workflows/deploy.yml).
+
+For how the code is organised and how to make common changes, read [documentation.md](documentation.md). It is written for beginner programmers.
