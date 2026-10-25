@@ -30,8 +30,14 @@ const routes: Record<Path, ComponentType> = {
 
 const isRoute = (path: string): path is Path => Object.hasOwn(routes, path)
 
+// GitHub Pages also serves each page's file directly, so "/labels.html",
+// "/labels/" and "/index.html" must show the same pages as "/labels" and "/".
 function normalizePath(pathname: string) {
-  return pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname
+  const path = pathname
+    .replace(/\/+$/, '')
+    .replace(/(^|\/)index\.html$/, '')
+    .replace(/\.html$/, '')
+  return path === '' ? '/' : path
 }
 
 function App() {
@@ -43,6 +49,13 @@ function App() {
   useEffect(() => {
     document.title = title
   }, [title])
+
+  // Show the clean address (e.g. /labels, not /labels.html) without adding a history entry.
+  useEffect(() => {
+    if (isRoute(path) && pathname !== path) {
+      window.history.replaceState(window.history.state, '', hash ? `${path}#${hash}` : path)
+    }
+  }, [pathname, path, hash])
 
   // Land at the top of a new page, or on the section a #hash link points to.
   useEffect(() => {
